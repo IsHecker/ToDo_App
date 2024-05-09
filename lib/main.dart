@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/screens/new_task.dart';
 import 'package:flutter_todo_app/screens/search.dart';
 import './screens/home.dart';
+import './screens/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
       title: 'ToDo List App',
       initialRoute: '/',
       routes: {
-        '/': (context) => Home(),
+        '/': (context) => Login(),
+        '/Home': (context) => Home(),
         '/TaskCreator': (context) => const TaskCreator(),
         '/Search': (context) => const Search(),
       },

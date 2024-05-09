@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
 import '../model/todo.dart';
-import '../widgets/todo_item.dart';
+import '../widgets/todo_list.dart';
+import '../widgets/todo_tile.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -13,7 +14,7 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
 
-  List<ToDo> _toDoResults = [];
+  List<TodoTask> _toDoResults = [];
   String currentSearch ="";
 
   @override
@@ -57,7 +58,7 @@ class _SearchState extends State<Search> {
                           ),
                         ),
                       ),
-                      for (ToDo todo in _toDoResults.reversed)
+                      for (TodoTask todo in _toDoResults.reversed)
                         ToDoTile(
                           todo: todo,
                           onToDoChanged: _handleToDoChange,
@@ -74,7 +75,7 @@ class _SearchState extends State<Search> {
     );
   }
 
-  void _handleToDoChange(ToDo todo) {
+  void _handleToDoChange(TodoTask todo) {
     setState(() {
       todo.isDone = !todo.isDone;
     });
@@ -83,19 +84,19 @@ class _SearchState extends State<Search> {
 
   void _deleteToDoItem(String taskName) {
     setState(() {
-      ToDo.todoList.removeWhere((item) => item.taskName == taskName);
+      TodoList.todoList.removeWhere((item) => item.taskName == taskName);
       _runFilter(currentSearch);
     });
   }
 
 
   void _runFilter(String enteredKeyword) {
-    List<ToDo> results = [];
+    List<TodoTask> results = [];
     currentSearch = enteredKeyword;
     if (enteredKeyword.isEmpty) {
       results = [];
     } else {
-      results = ToDo.todoList
+      results = TodoList.todoList
           .where((item) => item.taskName!
           .toLowerCase()
           .contains(enteredKeyword.toLowerCase()))

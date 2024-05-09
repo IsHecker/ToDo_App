@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo_app/widgets/todo_item.dart';
+import 'package:flutter_todo_app/widgets/todo_tile.dart';
 
 import '../constants/colors.dart';
 
@@ -58,7 +58,7 @@ class _TaskCreatorState extends State<TaskCreator> {
               width: 100,
               height: 50,
               decoration: BoxDecoration(
-                color: Colors.red,
+                color: tdRed,
                 borderRadius: BorderRadius.circular(5),
               ),
               child: TextButton(

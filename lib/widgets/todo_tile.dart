@@ -4,7 +4,7 @@ import '../model/todo.dart';
 import '../constants/colors.dart';
 
 class ToDoTile extends StatelessWidget {
-  final ToDo todo;
+  final TodoTask todo;
   final onToDoChanged;
   final onDeleteItem;
 
@@ -53,7 +53,7 @@ class ToDoTile extends StatelessWidget {
           child: IconButton(
             color: Colors.white,
             iconSize: 18,
-            icon: Icon(Icons.delete),
+            icon: const Icon(Icons.delete),
             onPressed: () {
               // print('Clicked on delete icon');
               onDeleteItem(todo.taskName);

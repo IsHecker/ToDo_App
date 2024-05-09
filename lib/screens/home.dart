@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo_app/screens/search.dart';
+import '../widgets/todo_list.dart';
 
 
 import '../model/todo.dart';
 import '../constants/colors.dart';
-import '../widgets/todo_item.dart';
+import '../widgets/todo_tile.dart';
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
@@ -14,8 +14,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
-  final todosList = ToDo.todoList;
+  final todosList = TodoList.todoList;
 
   @override
   void initState() {
@@ -62,7 +61,7 @@ class _HomeState extends State<Home> {
 
       body: Stack(
         children: [
-          Container(
+          Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 20,
               vertical: 15,
@@ -86,7 +85,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
 
-                      for (ToDo todoo in todosList.reversed)
+                      for (TodoTask todoo in todosList.reversed)
                         ToDoTile(
                           todo: todoo,
                           onToDoChanged: _handleToDoChange,
@@ -100,6 +99,7 @@ class _HomeState extends State<Home> {
             ),
           ),
 
+          // Aligns the bottom buttons
           Align(
             alignment: Alignment.bottomCenter,
             child: Row(
@@ -145,7 +145,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  void _handleToDoChange(ToDo todo) {
+  void _handleToDoChange(TodoTask todo) {
     setState(() {
       todo.isDone = !todo.isDone;
     });
@@ -161,7 +161,7 @@ class _HomeState extends State<Home> {
     dynamic result = await Navigator.pushNamed(context, '/TaskCreator');
 
     setState(() {
-      todosList.add(ToDo(taskName: result["task"]));
+      todosList.add(TodoTask(taskName: result["task"]));
     });
   }
 
